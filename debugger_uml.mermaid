@@ -1,0 +1,43 @@
+classDiagram
+    class RuntimeDebugger {
+        -deque~LogEntry~ logs
+        -map~string, deque~PerformanceMetric~~ metrics
+        -map~string, void*~ watchedVariables
+        -map~string, string~ variableTypes
+        -bool showConsole
+        -bool showPerformance
+        -bool showMemory
+        -bool showVariables
+        -const int maxLogs
+        -const int maxMetricPoints
+        -float fps
+        -float frameTime
+        -size_t memoryUsage
+        +Log(string msg, int level) void
+        +AddMetric(string name, float value) void
+        +WatchVariable~T~(string name, T* variable) void
+        +UpdateStats(float fps, float frameTime, size_t memory) void
+        +Render() void
+        -RenderConsole() void
+        -RenderPerformance() void
+        -RenderMemory() void
+        -RenderVariables() void
+    }
+
+    class LogEntry {
+        +string message
+        +int level
+        +chrono::steady_clock::time_point timestamp
+    }
+
+    class PerformanceMetric {
+        +float value
+        +chrono::steady_clock::time_point timestamp
+    }
+
+    RuntimeDebugger "1" *-- "0..*" LogEntry : contains
+    RuntimeDebugger "1" *-- "0..*" PerformanceMetric : tracks
+    
+    note for RuntimeDebugger "Main debugger class that integrates\nwith ImGui to provide real-time\ndebugging capabilities"
+    note for LogEntry "Stores console log messages\nwith severity levels:\n0=Info, 1=Warning, 2=Error"
+    note for PerformanceMetric "Stores time-series data\nfor performance graphs"
