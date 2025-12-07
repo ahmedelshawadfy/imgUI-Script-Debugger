@@ -1,0 +1,184 @@
+classDiagram
+    class CheatEngine {
+        -ProcessManager processManager
+        -MemoryScanner memoryScanner
+        -Debugger debugger
+        -AddressTable addressTable
+        +attachToProcess(pid)
+        +scanMemory(value, scanType)
+        +createTrainer()
+        +loadScript()
+    }
+
+    class ProcessManager {
+        -List~Process~ processes
+        -Process attachedProcess
+        +getProcessList()
+        +attachProcess(pid)
+        +detachProcess()
+        +readMemory(address, size)
+        +writeMemory(address, value)
+        +getModules()
+    }
+
+    class MemoryScanner {
+        -ScanConfiguration config
+        -List~ScanResult~ results
+        +firstScan(value, valueType)
+        +nextScan(value, condition)
+        +undoScan()
+        +filterResults(condition)
+        +getResults()
+    }
+
+    class ScanConfiguration {
+        -ValueType valueType
+        -ScanType scanType
+        -MemoryRegion region
+        -bool alignmentCheck
+        +setValueType(type)
+        +setScanType(type)
+        +setMemoryRegion(region)
+    }
+
+    class ScanResult {
+        -long address
+        -Object currentValue
+        -Object previousValue
+        +getAddress()
+        +getValue()
+        +compareValue()
+    }
+
+    class AddressTable {
+        -List~AddressEntry~ entries
+        +addAddress(address, description)
+        +removeAddress(address)
+        +freezeValue(address, value)
+        +unfreezeValue(address)
+        +exportTable()
+    }
+
+    class AddressEntry {
+        -long address
+        -String description
+        -ValueType type
+        -Object frozenValue
+        -bool frozen
+        -Pointer pointer
+        +freeze()
+        +unfreeze()
+        +updateValue()
+    }
+
+    class Pointer {
+        -long baseAddress
+        -List~int~ offsets
+        +resolve()
+        +validate()
+        +recalculate()
+    }
+
+    class Debugger {
+        -List~Breakpoint~ breakpoints
+        -bool attached
+        +setBreakpoint(address, type)
+        +removeBreakpoint(address)
+        +stepInto()
+        +stepOver()
+        +continue()
+        +getRegisters()
+    }
+
+    class Breakpoint {
+        -long address
+        -BreakpointType type
+        -String condition
+        -bool enabled
+        +trigger()
+        +disable()
+        +enable()
+    }
+
+    class Disassembler {
+        -Architecture arch
+        +disassemble(address, size)
+        +getInstructions(address)
+        +findPattern(pattern)
+        +followJumps(address)
+    }
+
+    class CodeInjector {
+        -List~Injection~ injections
+        +injectCode(address, code)
+        +removeInjection(id)
+        +createCodeCave()
+        +allocateMemory(size)
+    }
+
+    class Injection {
+        -String id
+        -long targetAddress
+        -byte[] originalBytes
+        -byte[] injectedCode
+        +enable()
+        +disable()
+        +restore()
+    }
+
+    class ScriptEngine {
+        -String scriptLanguage
+        -Map variables
+        +executeScript(script)
+        +loadScript(filepath)
+        +registerFunction(name, func)
+    }
+
+    class Trainer {
+        -String name
+        -List~Hotkey~ hotkeys
+        -AddressTable addresses
+        +activate()
+        +deactivate()
+        +export()
+    }
+
+    class Hotkey {
+        -String key
+        -Action action
+        -bool enabled
+        +trigger()
+        +setKey(key)
+    }
+
+    CheatEngine --> ProcessManager
+    CheatEngine --> MemoryScanner
+    CheatEngine --> Debugger
+    CheatEngine --> AddressTable
+    CheatEngine --> Disassembler
+    CheatEngine --> CodeInjector
+    CheatEngine --> ScriptEngine
+    CheatEngine --> Trainer
+
+    MemoryScanner --> ScanConfiguration
+    MemoryScanner --> ScanResult
+    
+    AddressTable --> AddressEntry
+    AddressEntry --> Pointer
+    
+    Debugger --> Breakpoint
+    
+    CodeInjector --> Injection
+    
+    Trainer --> Hotkey
+    Trainer --> AddressTable
+
+    ProcessManager --> Process
+    
+    class Process {
+        -int pid
+        -String name
+        -long baseAddress
+        +isRunning()
+        +getHandle()
+    }
