@@ -1,0 +1,13 @@
+﻿  ExternalAppDetector.cpp
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\ExternalAppDetector.cpp(17,57): warning C4100: 'lParam': unreferenced parameter
+  main.cpp
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(134,17): warning C4189: 'splash_duration': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(135,12): warning C4189: 'splash_start_time': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(133,10): warning C4189: 'show_splash': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(49,17): warning C4505: '`anonymous-namespace'::TextCentered': unreferenced function with internal linkage has been removed
+  Generating code
+  321 of 2318 functions (13.8%) were compiled, the rest were copied from previous compilation.
+    184 functions were new in current compilation
+    49 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  example_win32_directx9.vcxproj -> D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\Release\example_win32_directx9.exe

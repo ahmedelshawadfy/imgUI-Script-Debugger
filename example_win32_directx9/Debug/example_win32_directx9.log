@@ -1,0 +1,19 @@
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  imgui_impl_dx9.cpp
+  imgui_impl_win32.cpp
+  ExternalAppDetector.cpp
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\ExternalAppDetector.cpp(17,57): warning C4100: 'lParam': unreferenced parameter
+  main.cpp
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(134,17): warning C4189: 'splash_duration': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(135,12): warning C4189: 'splash_start_time': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(133,10): warning C4189: 'show_splash': local variable is initialized but not referenced
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\main.cpp(49,17): warning C4505: '`anonymous-namespace'::TextCentered': unreferenced function with internal linkage has been removed
+  SplashScreen.cpp
+  Theme.cpp
+D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\Theme.cpp(11,14): warning C4189: 'io': local variable is initialized but not referenced
+  Generating Code...
+  example_win32_directx9.vcxproj -> D:\imgUI_Script\imGui\imgui\examples\example_win32_directx9\Debug\example_win32_directx9.exe
